@@ -10,12 +10,10 @@ router.use(middleware.checkIfUserLoggedIn);
 
 /* GET /resorts */
 router.get('/', (req, res, next) => {
-	const { currentUser } = req.session;
 	Resort.find()
 		.then(resorts => {
 			res.render('resorts/list', {
 				resorts,
-				currentUser,
 				info: req.flash('info'),
 			});
 		})

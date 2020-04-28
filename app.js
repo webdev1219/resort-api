@@ -3,11 +3,14 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const hbs = require('hbs');
+let hbs = require('hbs');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const extend = require('handlebars-extend-block');
+
+hbs = extend(hbs);
 
 require('dotenv').config();
 

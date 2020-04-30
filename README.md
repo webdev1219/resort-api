@@ -1,5 +1,15 @@
-# Title
+# Resorts API
 
 ## Motivation
 
-lorem ipsum
+Just a litle API for educational porpouses.
+
+## Endpoints
+
+| Method | Path           | description      | Body                            |
+| :----: | -------------- | ---------------- | ------------------------------- |
+|  GET   | `/resorts`     | list all resorts |                                 |
+|  POST  | `/resorts`     | create a resort  | `{ name, latitude, longitude }` |
+|  GET   | `/resorts/:id` | get a resort     |                                 |
+|  PUT   | `/resorts/:id` | update a resort  | `{ name, latitude, longitude }` |
+| DELETE | `/resorts/:id` | delete a resort  |                                 |

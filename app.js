@@ -24,7 +24,7 @@ mongoose
 		console.error(error);
 	});
 
-const indexRouter = require('./routes/index');
+const authRouter = require('./routes/auth');
 const resortsRouter = require('./routes/resorts');
 
 const app = express();
@@ -51,7 +51,7 @@ app.use(
 	})
 );
 
-app.use('/', indexRouter);
+app.use('/', authRouter);
 app.use('/resorts', resortsRouter);
 
 // catch 404 and forward to error handler
@@ -65,7 +65,7 @@ app.use((err, req, res, next) => {
 
 	// only render if the error ocurred before sending the response
 	if (!res.headersSent) {
-		res.status(500).json({ code: 'unexpected' });
+		res.status(500).json({ code: 'unexpected', error: err });
 	}
 });
 

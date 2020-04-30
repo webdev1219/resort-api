@@ -2,11 +2,11 @@
 const express = require('express');
 const Resort = require('../models/Resort');
 // const Review = require('../models/Review');
-// const middleware = require('../helpers/authMiddleware');
+const { checkIfLoggedIn } = require('../middlewares');
 
 const router = express.Router();
 
-// router.use(middleware.checkIfUserLoggedIn);
+router.use(checkIfLoggedIn);
 
 /* GET /resorts */
 router.get('/', (req, res, next) => {
@@ -26,7 +26,7 @@ router.post('/', (req, res, next) => {
 		longitude: parseFloat(longitude),
 	})
 		.then(resort => {
-			res.json(resort);
+			res.status(201).json(resort);
 		})
 		.catch(next);
 });
@@ -34,7 +34,6 @@ router.post('/', (req, res, next) => {
 // POST /resorts/:id
 router.delete('/:id', (req, res, next) => {
 	const { id } = req.params;
-
 	Resort.findByIdAndDelete(id)
 		.then(resort => {
 			res.json(resort);
@@ -60,20 +59,5 @@ router.put('/:id', (req, res, next) => {
 		})
 		.catch(next);
 });
-
-// POST /resorts/:id/review
-// router.post('/:id/review', (req, res, next) => {
-// 	const { id } = req.params;
-// 	const { author, text } = req.body;
-// 	Review.create({
-// 		resort_id: id,
-// 		author,
-// 		text,
-// 	})
-// 		.then(() => {
-// 			res.redirect(`/resorts/${id}/update`);
-// 		})
-// 		.catch(next);
-// });
 
 module.exports = router;

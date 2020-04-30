@@ -2,7 +2,7 @@
 
 ## Motivation
 
-Just a litle API for educational porpouses.
+Just a litle API for educational purposes.
 
 ## Endpoints
 
